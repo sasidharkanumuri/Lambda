@@ -2,10 +2,13 @@ version: 0.1
 phases: 
  install:
   commands:
-   - npm install time
-   - aws cloudformation package --template-file samTemplate.yaml
-                                --output-template-file NewSamTemplate.yaml 
-                                --s3-bucket sample-ci-cd-pipeline
+   - npm run setup
+   - npm start
+   - npm run clean
+   - aws cloudformation package --template-file Template.yaml 
+                                --output-template-file NewSamTemplate.yaml
+								--s3-bucket sample-ci-cd-pipeline
+
 artifacts:
  type: zip
  files:
