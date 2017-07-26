@@ -6,7 +6,7 @@ Resources:
   Type: AWS::Serverless::Function
   Properties:
    Handler: index.handler
-   Runtime: nodejs4.3
+   Runtime: nodejs6.1
    CodeUri: ./
    Events:
     MyNodeApi:
@@ -14,5 +14,3 @@ Resources:
      Properties:
       Path: /nodeResource
       Method: GET
-
-
