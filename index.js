@@ -4,7 +4,7 @@ var rp = require('request-promise');
 exports.handler = (event, context, callback) => {    
 
     var options = {
-    uri: http://localhost:3000,
+    uri: 'http://localhost:3000',
     method: 'POST',
     body: {
 
