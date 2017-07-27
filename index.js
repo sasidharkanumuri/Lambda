@@ -1,28 +1,25 @@
 'use strict';
+console.log('Loading function');
+var rp = require('request-promise');
+exports.handler = (event, context, callback) => {    
 
-var url = require('url');
-var target = 'http://localhost:3000';
+    var options = {
+    uri: http://localhost:3000,
+    method: 'POST',
+    body: {
 
-exports.handler = function(event, context, callback) {
-  var urlObject = url.parse(target);
-  var mod = require(
-    urlObject.protocol.substring(0, urlObject.protocol.length - 1)
-  );
-  console.log('[INFO] - Checking ' + target);
-  var req = mod.request(urlObject, function(res) {
-    res.setEncoding('utf8');
-    res.on('data', function(chunk) {
-      console.log('[INFO] - Read body chunk');
-    });
-    res.on('end', function() {
-      console.log('[INFO] - Response end');
-      callback();
-    });
-  });
+    },
+    json: true 
+};
 
-  req.on('error', function(e) {
-    console.log('[ERROR] - ' + e.message);
-    callback(e);
-  });
-  req.end();
+
+    rp(options).then(function (parsedBody) {
+            console.log(parsedBody);
+        })
+        .catch(function (err) {
+            // POST failed... 
+            console.log(err);
+        });
+
+    context.done(null);
 };
