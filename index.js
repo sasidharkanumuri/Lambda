@@ -1,7 +1,7 @@
 var http = require('http');
 
 exports.handler = function (event, context) {
-  http.get('http://www.reactboilerplate.com', function (result) {
+  http.get('http://localhost:3000', function (result) {
     console.log('Success, with: ' + result.statusCode);
     context.done(null);
   }).on('error', function (err) {
