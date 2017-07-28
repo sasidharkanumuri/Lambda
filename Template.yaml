@@ -1,6 +1,10 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: Nodejs lambda
+Parameters:
+    OriginUrl:
+        Description: "The origin url to allow CORS requests from. This will be the base URL of your static SAM website."
+        Type: "String"
 Resources:
  NodeFunction:
   Type: AWS::Serverless::Function
@@ -8,6 +12,9 @@ Resources:
    Handler: index.handler
    Runtime: nodejs6.10
    CodeUri: ./
+   Environment:
+        Variables:
+           ORIGIN_URL: !Ref OriginUrl
    Events:
     MyNodeApi:
      Type: Api
